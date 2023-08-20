@@ -4,7 +4,7 @@ title ドメイン設計
 
 package ユーザ集約 {
   class ユーザ {
-    ユーザID int
+    ユーザID: String
     + 名前: String [0..255]
     + メールアドレス: String [0..255]
     + パスワード: String [1..12]
@@ -14,16 +14,16 @@ package ユーザ集約 {
   }
 
   class スキル {
-    スキルID int
-    ユーザID int
-    + タグ名: String
+    スキルID: String
+    ユーザID: String
+    タグID: String
     + 評価: Integer [1..5]
     + 年数: Integer [0..5]
   }
 
   class 経歴 {
-    経歴ID int
-    ユーザID int
+    経歴ID: String
+    ユーザID: String
     + 詳細: String [0..1000]
     + 西暦from: Integer [1970..*]
     + 西暦to: Integer [1970..*]
@@ -33,8 +33,9 @@ package ユーザ集約 {
 
 package メンター募集集約 {
   class メンター募集 {
-    メンター募集ID int
-    ユーザID int
+    メンター募集ID: String
+    ユーザID: String
+    タグID: List<タグ>
     + タイトル: String [0..255]
     + カテゴリ: String
     + 相談形式: String
@@ -43,47 +44,54 @@ package メンター募集集約 {
     + 予算: Integer [1000..*]
     + 応募期間: Integer [1..14]
     + ステータス: String
-    + タグ: List<タグ>
   }
 }
 
-class メンター提案 {
-  メンター提案ID int
-  ユーザID int
-  メンター募集ID int
-  + 提案内容: String [0..2000]
+package メンター提案集約 {
+  class メンター提案 {
+    メンター提案ID: String
+    ユーザID: String
+    メンター募集ID int
+    + 提案内容: String [0..2000]
+  }
 }
 
-class プラン {
-  プランID int
-  ユーザID int
-  + タイトル: String [0..255]
-  + カテゴリ: String
-  + タグ: List<タグ> [0..5]
-  + 内容: String [0..2000]
-  + ステータス: String
-  + 相談形式: String
-  + 金額: Integer
-  + 相談方式: String
+package プラン集約 {
+  class プラン {
+    プランID: String
+    ユーザID: String
+    + タイトル: String [0..255]
+    + カテゴリ: String
+    + タグ: List<タグ> [0..5]
+    + 内容: String [0..2000]
+    + ステータス: String
+    + 相談形式: String
+    + 金額: Integer
+    + 相談方式: String
+  }
 }
 
-
-class 契約リクエスト {
-  契約リクエストID int
-  プランID int
-  + メッセージ: String [0..500]
+package 契約リクエスト集約 {
+  class 契約リクエスト {
+    契約リクエストID: String
+    プランID: String
+    + メッセージ: String [0..500]
+  }
 }
 
-class 契約承認 {
-  契約承認ID int
-  契約リクエストID int
-  + メッセージ: String [0..500]
+package 契約承認集約 {
+  class 契約承認 {
+    契約承認ID: String
+    契約リクエストID: String
+    + メッセージ: String [0..500]
+  }
 }
 
-
-class タグ {
-  タグID int
-  + タグ名 String
+package タグ集約 {
+  class タグ {
+    タグID: String
+    + タグ名 String
+  }
 }
 
 
