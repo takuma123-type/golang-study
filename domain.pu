@@ -50,7 +50,7 @@ package メンター提案集約 {
   class メンター提案 {
     メンター提案ID: String
     ユーザID: String
-    メンター募集ID int
+    メンター募集ID: int
     + 提案内容: String [0..2000]
   }
 }
