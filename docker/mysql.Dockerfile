@@ -1,5 +1,4 @@
-FROM mysql:8.0.34-debian@sha256:966645be9470598ff5b5b8d5289ed2dcd760dccaf0f6cd84481adf9058d1cbfc
-
+FROM --platform=linux/amd64 mysql:8.0.34-debian
 COPY my.cnf /etc/mysql/conf.d/my.cnf
 
 # 日本語環境を追加
