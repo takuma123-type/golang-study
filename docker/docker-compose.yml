@@ -1,6 +1,15 @@
-version: '3'
+version: "3"
 
 services:
+  go:
+    build:
+      context: ..
+      dockerfile: docker/golang.Dockerfile
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../src:/app/golang-study/src
+
   db:
     build:
       context: .
