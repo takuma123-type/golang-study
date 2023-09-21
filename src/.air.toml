@@ -1,0 +1,17 @@
+# .air.toml
+root = "./cmd"
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./tmp/main ./cmd"
+  bin = "tmp/main"
+
+[watch]
+  pattern = ["*.go", "*.html"]
+  delay = 1000
+  stop_signal = "SIGKILL"
+  kill_delay = 500
+
+[log]
+  level = "info"
+  color = true
