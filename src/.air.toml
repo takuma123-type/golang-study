@@ -1,5 +1,4 @@
-# .air.toml
-root = "./cmd"
+root = "."
 tmp_dir = "tmp"
 
 [build]
