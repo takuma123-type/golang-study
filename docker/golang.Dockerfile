@@ -1,13 +1,21 @@
-FROM golang:1.18-alpine
+FROM --platform=linux/arm64/v8 golang:1.21
 
 WORKDIR /go/src
-COPY ./src .
-COPY src/.air.toml /go/src/.air.toml
 
-RUN apk upgrade --update && \
-    apk --no-cache add git && \
-    go get -u github.com/gin-gonic/gin && \
-    go get -u github.com/cosmtrek/air && \
-    go build -o /go/bin/air github.com/cosmtrek/air
+# 必要なツールをインストール
+RUN apt-get update && \
+    apt-get install -y git
+
+# airのインストール
+RUN go install github.com/cosmtrek/air@latest
+
+# src/go.mod と src/go.sum のみを先にコピー
+COPY src/go.* .
+
+# 依存関係をインストール
+RUN go mod download
+
+# ソースコードと設定ファイルをコピー
+COPY src/ .
 
 CMD ["air", "-c", ".air.toml"]
