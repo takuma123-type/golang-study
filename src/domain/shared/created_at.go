@@ -10,6 +10,6 @@ func NewCreatedAt() CreatedAt {
 func (c CreatedAt) Value() time.Time {
 	return time.Time(c)
 }
-func (c CreatedAt) Equal(t time.Time) bool {
-	return c.Value().Equal(t)
+func (c CreatedAt) Equal(t CreatedAt) bool {
+	return c.Value().Equal(t.Value())
 }

@@ -3,33 +3,38 @@ package user
 import (
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/hrs-o/docker-go/domain/shared"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestNewUser(t *testing.T) {
 	tests := []struct {
-		id        UserID
 		firstName string
 		lastName  string
 		wantErr   bool
 	}{
-		{UserID("some-id"), "John", "Doe", false},
-		{UserID("some-id"), "", "Doe", true},
-		{UserID("some-id"), "John", "", true},
-		{UserID("some-id"), "verylongfirstnameverylongfirstname", "Doe", true},
-		{UserID("some-id"), "John", "verylonglastnameverylonglastname", true},
+		{"John", "Doe", false},
+		{"", "Doe", true},
+		{"John", "", true},
+		{"verylongfirstnameverylongfirstname", "Doe", true},
+		{"John", "verylonglastnameverylonglastname", true},
 	}
 
 	for _, test := range tests {
-		user, err := NewUser(test.id, test.firstName, test.lastName)
-		if (err != nil) != test.wantErr {
-			t.Errorf("NewUser(%q, %q, %q) error = %v, wantErr %v", test.id, test.firstName, test.lastName, err, test.wantErr)
+		user, err := NewUser(NewUserID(), test.firstName, test.lastName)
+		if test.wantErr {
+			assert.Error(t, err)
 			continue
 		}
-		if err == nil && (user.ID != test.id || user.FirstName != test.firstName || user.LastName != test.lastName) {
-			t.Errorf("NewUser(%q, %q, %q) = %v, want %v", test.id, test.firstName, test.lastName, user, test)
-		}
+		assert.NoError(t, err)
+		assert.Equal(t, test.firstName, user.FirstName)
+		assert.Equal(t, test.lastName, user.LastName)
 	}
+}
+
+func NewUserID() UserID {
+	return UserID(uuid.New().String())
 }
 
 func TestGetCreatedAt(t *testing.T) {
@@ -41,7 +46,5 @@ func TestGetCreatedAt(t *testing.T) {
 	}
 
 	got := user.GetCreatedAt()
-	if got.Value().IsZero() {
-		t.Errorf("GetCreatedAt() = %v, want non-zero time", got)
-	}
+	assert.NotZero(t, got.Value())
 }

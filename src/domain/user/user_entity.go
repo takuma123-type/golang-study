@@ -2,6 +2,7 @@ package user
 
 import (
 	"errors"
+	"unicode/utf8"
 
 	"github.com/hrs-o/docker-go/domain/shared"
 )
@@ -12,14 +13,26 @@ const (
 )
 
 type User struct {
-	ID        UserID
-	FirstName string
-	LastName  string
-	CreatedAt shared.CreatedAt
+	id        UserID
+	firstName string
+	lastName  string
+	createdAt shared.CreatedAt
 }
 
-func (u *User) GetCreatedAt() shared.CreatedAt {
-	return u.CreatedAt
+func (u *User) ID() UserID {
+	return u.id
+}
+
+func (u *User) FirstName() string {
+	return u.firstName
+}
+
+func (u *User) LastName() string {
+	return u.lastName
+}
+
+func (u *User) CreatedAt() shared.CreatedAt {
+	return u.createdAt
 }
 
 func NewUser(id UserID, firstName string, lastName string) (*User, error) {
@@ -31,18 +44,18 @@ func NewUser(id UserID, firstName string, lastName string) (*User, error) {
 		return nil, errors.New("last name is required")
 	}
 
-	if len(firstName) > maxFirstNameLength {
+	if utf8.RuneCountInString(firstName) > maxFirstNameLength {
 		return nil, errors.New("first name is too long (maximum length is 30)")
 	}
 
-	if len(lastName) > maxLastNameLength {
+	if utf8.RuneCountInString(lastName) > maxLastNameLength {
 		return nil, errors.New("last name is too long (maximum length is 30)")
 	}
 
 	return &User{
-		ID:        id,
-		FirstName: firstName,
-		LastName:  lastName,
-		CreatedAt: shared.NewCreatedAt(),
+		id:        id,
+		firstName: firstName,
+		lastName:  lastName,
+		createdAt: shared.NewCreatedAt(),
 	}, nil
 }
