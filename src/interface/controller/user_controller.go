@@ -3,10 +3,10 @@ package controller
 import (
 	"context"
 
-	"github.com/revenue-hack/cleanarchitecture-sample/src/domain/userdm"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/interface/presenter"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/usecase/userusecase"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/usecase/userusecase/userinput"
+	"github.com/takuma123-type/golang-study/src/domain/userdm"
+	"github.com/takuma123-type/golang-study/src/interface/presenter"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/userinput"
 )
 
 type userController struct {

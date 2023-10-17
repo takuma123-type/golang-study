@@ -1,8 +1,6 @@
 package userdm
 
-import (
-	"github.com/revenue-hack/cleanarchitecture-sample/src/domain/shared"
-)
+import "github.com/takuma123-type/golang-study/src/domain/shared"
 
 func GenWhenCreate(first, last string) (*User, error) {
 	return newUser(NewUserID(), first, last, shared.NewCreatedAt())

@@ -3,7 +3,7 @@ package userdm
 import (
 	"unicode/utf8"
 
-	"github.com/revenue-hack/cleanarchitecture-sample/src/domain/shared"
+	"github.com/takuma123-type/golang-study/src/domain/shared"
 	"golang.org/x/xerrors"
 )
 

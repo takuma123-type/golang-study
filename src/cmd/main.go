@@ -4,8 +4,8 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/infra/middleware"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/infra/router"
+	"github.com/takuma123-type/golang-study/src/infra/middleware"
+	"github.com/takuma123-type/golang-study/src/infra/router"
 )
 
 func main() {

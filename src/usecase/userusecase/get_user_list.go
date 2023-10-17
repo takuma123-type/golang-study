@@ -3,8 +3,8 @@ package userusecase
 import (
 	"context"
 
-	"github.com/revenue-hack/cleanarchitecture-sample/src/domain/userdm"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/usecase/userusecase/useroutput"
+	"github.com/takuma123-type/golang-study/src/domain/userdm"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/useroutput"
 )
 
 type GetUserListUsecase struct {

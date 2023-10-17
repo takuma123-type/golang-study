@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/support/smperr"
+	"github.com/takuma123-type/golang-study/src/support/smperr"
 )
 
 func HandleErrorMiddleware() gin.HandlerFunc {
