@@ -3,22 +3,23 @@ package userusecase
 import (
 	"context"
 
-	"github.com/hrs-o/docker-go/usecase/userinput"
-	"github.com/hrs-o/docker-go/usecase/useroutput"
+	"github.com/takuma123-type/golang-study/src/domain/user"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/userinput"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/useroutput"
 )
 
 type CreateUserUsecase struct {
-	userRepository userdm.UserRepository
+	userRepository user.UserRepository
 }
 
-func NewCreateUser(userRepo userdm.UserRepository) *CreateUserUsecase {
+func NewCreateUser(userRepo user.UserRepository) *CreateUserUsecase {
 	return &CreateUserUsecase{
 		userRepository: userRepo,
 	}
 }
 
 func (use *CreateUserUsecase) Exec(ctx context.Context, in *userinput.CreateUserInput) (*useroutput.CreateUserOutput, error) {
-	user, err := userdm.GenWhenCreate(in.FirstName, in.LastName)
+	user, err := user.GenWhenCreate(in.FirstName, in.LastName)
 
 	if err != nil {
 		return nil, err

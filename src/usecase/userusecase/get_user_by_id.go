@@ -3,23 +3,23 @@ package userusecase
 import (
 	"context"
 
-	"github.com/revenue-hack/cleanarchitecture-sample/src/domain/userdm"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/usecase/userusecase/userinput"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/usecase/userusecase/useroutput"
+	"github.com/takuma123-type/golang-study/src/domain/user"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/userinput"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/useroutput"
 )
 
 type GetUserByIDUsecase struct {
-	userRepository userdm.UserRepository
+	userRepository user.UserRepository
 }
 
-func NewGetUserByID(userRepo userdm.UserRepository) *GetUserByIDUsecase {
+func NewGetUserByID(userRepo user.UserRepository) *GetUserByIDUsecase {
 	return &GetUserByIDUsecase{
 		userRepository: userRepo,
 	}
 }
 
 func (use *GetUserByIDUsecase) Exec(ctx context.Context, in *userinput.GetUserByIDInput) (*useroutput.UserByID, error) {
-	userID, err := userdm.NewUserIDByVal(in.ID)
+	userID, err := user.NewUserIDByVal(in.ID)
 	if err != nil {
 		return nil, err
 	}

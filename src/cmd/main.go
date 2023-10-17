@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/hrs-o/docker-go/infra/router"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/takuma123-type/golang-study/src/infra/router"
 )
 
 func helloHandler(c *gin.Context) {

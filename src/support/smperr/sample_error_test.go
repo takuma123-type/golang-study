@@ -3,7 +3,7 @@ package smperr_test
 import (
 	"testing"
 
-	"github.com/revenue-hack/cleanarchitecture-sample/src/support/smperr"
+	"github.com/takuma123-type/golang-study/src/support/smperr"
 )
 
 func TestBadRequest(t *testing.T) {

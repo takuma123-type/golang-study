@@ -2,10 +2,10 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/interface/controller"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/interface/database"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/interface/presenter"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/usecase/userusecase/userinput"
+	"github.com/takuma123-type/golang-study/src/interface/controller"
+	"github.com/takuma123-type/golang-study/src/interface/database"
+	"github.com/takuma123-type/golang-study/src/interface/presenter"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/userinput"
 )
 
 func NewUserRouter(g *gin.Engine) {

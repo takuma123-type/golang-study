@@ -4,7 +4,7 @@ import (
 	"errors"
 	"unicode/utf8"
 
-	"github.com/hrs-o/docker-go/domain/shared"
+	"github.com/takuma123-type/golang-study/src/domain/shared"
 )
 
 const (

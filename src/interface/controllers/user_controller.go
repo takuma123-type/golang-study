@@ -3,18 +3,28 @@ package controllers
 import (
 	"context"
 
-	userinput "github.com/abyssparanoia/catharsis/user/interface/input/user"
-	presenter "github.com/abyssparanoia/catharsis/user/interface/presenter/user"
-	userusecase "github.com/abyssparanoia/catharsis/user/usecase/user"
-	userdm "github.com/revenue-hack/cleanarchitecture-sample/src/domain/userdm"
+	"github.com/takuma123-type/golang-study/src/domain/user"
+	"github.com/takuma123-type/golang-study/src/interface/presenter"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/userinput"
 )
 
 type userController struct {
+	userRepo user.Repository
 	delivery presenter.UserPresenter
-	userRepo userdm.UserRepository
 }
 
-func NewUserController(p presenter.UserPresenter, userRepo userdm.UserRepository) *userController {
+func (c *userController) GetUserByID(ctx context.Context, in *userinput.GetUserByIDInput) error {
+	usecase := userusecase.NewGetUserByID(c.userRepo)
+	out, err := usecase.Exec(ctx, in)
+	if err != nil {
+		return err
+	}
+	c.delivery.User(out)
+	return nil
+}
+
+func NewUserController(p presenter.UserPresenter, userRepo user.UserRepository) *userController {
 	return &userController{
 		delivery: p,
 		userRepo: userRepo,
@@ -32,12 +42,12 @@ func (c *userController) GetUserList(ctx context.Context) error {
 
 }
 
-func (c *userController) GetUserByID(ctx context.Context, in *userinput.GetUserByIDInput) error {
-	usecase := userusecase.NewGetUserByID(c.userRepo)
+func (c *userController) CreateUser(ctx context.Context, in *userinput.CreateUserInput) error {
+	usecase := userusecase.NewCreateUser(c.userRepo)
 	out, err := usecase.Exec(ctx, in)
 	if err != nil {
 		return err
 	}
-	c.delivery.User(out)
+	c.delivery.Create(out)
 	return nil
 }

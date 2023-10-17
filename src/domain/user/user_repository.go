@@ -4,8 +4,8 @@ import (
 	"context"
 )
 
-type UserRepository interface {
-	Store(ctx context.Context, user *User) error
-	FindAll(ctx context.Context) ([]*User, error)
-	FindByID(ctx context.Context, userID UserID) (*User, error)
+type Repository interface {
+	GetByID(ctx context.Context, id UserID) (*User, error)
+	GetAll(ctx context.Context) ([]*User, error)
+	Create(ctx context.Context, user *User) error
 }

@@ -3,15 +3,15 @@ package userusecase
 import (
 	"context"
 
-	"github.com/revenue-hack/cleanarchitecture-sample/src/domain/userdm"
-	"github.com/revenue-hack/cleanarchitecture-sample/src/usecase/userusecase/useroutput"
+	"github.com/takuma123-type/golang-study/src/domain/user"
+	"github.com/takuma123-type/golang-study/src/usecase/userusecase/useroutput"
 )
 
 type GetUserListUsecase struct {
-	userRepository userdm.UserRepository
+	userRepository user.UserRepository
 }
 
-func NewGetUserList(userRepo userdm.UserRepository) *GetUserListUsecase {
+func NewGetUserList(userRepo user.UserRepository) *GetUserListUsecase {
 	return &GetUserListUsecase{
 		userRepository: userRepo,
 	}
